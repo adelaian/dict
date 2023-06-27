@@ -1,0 +1,35 @@
+def load_dictionary(file_path):
+    dictionary = {}
+    with open(file_path, 'r') as file:
+        for line in file:
+            word, definition = line.strip().split(':')
+            dictionary[word] = definition
+    return dictionary
+
+def search_word(dictionary, word):
+    if word in dictionary:
+        return dictionary[word]
+    else:
+        return "未找到该单词的释义。"
+
+print("电子词典命令行工具")
+
+dictionary = load_dictionary('dictionary.txt')
+
+while True:
+    print("\n请选择操作：")
+    print("1. 查询单词释义")
+    print("2. 退出程序")
+
+    choice = input("请选择操作（输入数字）：")
+
+    if choice == '2':
+        print("谢谢使用，再见！")
+        break
+
+    if choice == '1':
+        word = input("请输入要查询的单词：")
+        definition = search_word(dictionary, word)
+        print("释义：", definition)
+    else:
+        print("无效的选择，请重新输入。")
